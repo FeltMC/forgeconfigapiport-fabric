@@ -145,7 +145,7 @@ publishing {
 }
 
 
-curseforge {
+/*curseforge {
 	def changelogName = 'CHANGELOG.md'
 	def changelogFile = file(changelogName)
 	if (!changelogFile.canRead()) { throw new FileNotFoundException("Could not read file ".concat(changelogName)) }
@@ -171,7 +171,7 @@ curseforge {
 		javaVersionAutoDetect = false
 		forgeGradleIntegration = false
 	}
-}
+}*/
 
 //task publishModrinth (type: TaskModrinthUpload){
 //	token = System.getenv("modrinthApiToken")
