@@ -220,8 +220,8 @@ def static getNextVersion(String puzzlesVersion) {
 	return currentVersion.substring(0, currentVersion.indexOf(".") + 1).concat(String.valueOf(Integer.parseInt(currentVersion.substring(currentVersion.indexOf(".") + 1, currentVersion.size())) + 1))
 }
 
-signing {
+/*signing {
 	sign publishing.publications.mavenJava
-}
+}*/
 
 build.finalizedBy project.copyJarToDir, project.incrementBuildNumber
