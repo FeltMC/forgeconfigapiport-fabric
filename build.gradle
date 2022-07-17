@@ -48,44 +48,23 @@ loom {
 processResources {
 	duplicatesStrategy DuplicatesStrategy.INCLUDE
 
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "modId", 					project.modid
-    inputs.property "modName", 					"${modName}"
-    inputs.property "modVersion", 				project.modversion
-    inputs.property "modGroup", 				project.group
-    inputs.property "modPageUrl", 				"${modPageUrl}"
-    inputs.property "modIssueUrl", 				"${modIssueUrl}"
-	inputs.property "modSourceUrl", 			"${modSourceUrl}"
-    inputs.property "modDescription", 			"${modDescription}"
-    inputs.property "modAuthor", 				project.modauthor
-    inputs.property "minFabricVersion", 		"${minFabricVersion}"
-	inputs.property "minFabricApiVersion", 		"${minFabricApiVersion}"
-    inputs.property "minMinecraftVersion", 		"${minMinecraftVersion}"
-    inputs.property "nextMinecraftVersion", 	project.nextmcversion
-//	inputs.property "minPuzzlesVersion", 		"${minPuzzlesVersion}"
-    inputs.property "packFormat", 				"${packFormat}"
-	inputs.property "mainEntryPoint", 			project.mainentrypoint
-	inputs.property "clientEntryPoint", 		project.cliententrypoint
+	def toReplace = [
+			'modVersion':           project.modversion,
+			'modGroup':             project.group,
+			'modPageUrl':           "${modPageUrl}",
+			'modIssueUrl':          "${modIssueUrl}",
+			'modSourceUrl':         "${modSourceUrl}",
+			'modAuthor':            project.modauthor,
+			'minFabricVersion':     "${minFabricVersion}",
+			'minFabricApiVersion':  "${minFabricApiVersion}",
+			'minMinecraftVersion':  "${minMinecraftVersion}",
+			"nextMinecraftVersion": project.nextmcversion
+	]
 
+    // this will ensure that this task is redone when the versions change.
+	inputs.properties toReplace
 	filesMatching ('fabric.mod.json') {
-        expand (
-                'modId':                project.modid,
-                'modName':              "${modName}",
-                'modVersion':           project.modversion,
-                'modGroup':             project.group,
-                'modPageUrl':           "${modPageUrl}",
-                'modIssueUrl':          "${modIssueUrl}",
-				'modSourceUrl':         "${modSourceUrl}",
-                'modAuthor':            project.modauthor,
-				'modDescription':       "${modDescription}",
-                'minFabricVersion':     "${minFabricVersion}",
-				'minFabricApiVersion':  "${minFabricApiVersion}",
-                'minMinecraftVersion':  "${minMinecraftVersion}",
-                "nextMinecraftVersion": project.nextmcversion,
-//				"minPuzzlesVersion":    "${minPuzzlesVersion}",
-				"mainEntryPoint": 		project.mainentrypoint,
-				"clientEntryPoint": 	project.cliententrypoint
-        )
+        expand toReplace
     }
 
 	filesMatching ('pack.mcmeta') {

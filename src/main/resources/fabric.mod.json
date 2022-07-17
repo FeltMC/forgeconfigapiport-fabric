@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "${modId}",
+  "id": "forgeconfigapiport",
   "version": "${modVersion}",
 
-  "name": "${modName}",
-  "description": "${modDescription}",
+  "name": "Forge Config API Port",
+  "description": "Yes, you're reading that correctly. This is the whole Forge Config API ported to Fabric.",
   "authors": [
     "LexManos",
     "cpw",
@@ -22,14 +22,14 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "${mainEntryPoint}"
+      "net.minecraftforge.ForgeConfigAPIPort"
     ],
     "client": [
-      "${clientEntryPoint}"
+      "net.minecraftforge.client.ForgeConfigAPIPortClient"
     ]
   },
   "mixins": [
-    "META-INF/${modId}.mixins.json"
+    "META-INF/forgeconfigapiport.mixins.json"
   ],
 
   "depends": {
